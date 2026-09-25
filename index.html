@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Memahami transmisi data</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0f0f17;
+      --bg-card: rgba(20, 20, 35, 0.65);
+      --text: #e0e0ff;
+      --text-muted: #a0a0cc;
+      --accent: #00d4ff;
+      --accent-dark: #00a3cc;
+      --purple: #c084fc;
+      --gradient: linear-gradient(135deg, #00d4ff 0%, #c084ff 100%);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+      background-image: 
+        radial-gradient(circle at 15% 50%, rgba(0, 212, 255, 0.08) 0%, transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(192, 132, 252, 0.07) 0%, transparent 30%);
+    }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+    header { padding: 60px 0 40px; text-align: center; }
+
+    header h1 {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+    }
+
+    header p.subtitle { font-size: 1.3rem; color: var(--text-muted); }
+
+    nav.nav {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 30px 0;
+      flex-wrap: wrap;
+    }
+
+    nav.nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 18px;
+      border-radius: 50px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    nav.nav a:hover { background: var(--accent); color: #0f0f17; }
+
+    article { background: var(--bg-card); padding: 40px; border-radius: 16px; border: 1px solid rgba(0,212,255,0.15); backdrop-filter: blur(12px); }
+
+    article h1 { font-size: 2.5rem; margin-bottom: 16px; line-height: 1.2; }
+
+    article .meta { color: var(--text-muted); margin-bottom: 40px; font-size: 0.95rem; }
+
+    article img.hero { width: 100%; height: 400px; object-fit: cover; border-radius: 12px; margin-bottom: 30px; }
+
+    article p, article h2, article h3 { margin-bottom: 20px; }
+
+    article a.back { 
+      display: inline-block; 
+      margin-top: 40px; 
+      color: var(--accent); 
+      font-weight: 600; 
+      text-decoration: none; 
+      padding: 10px 20px; 
+      border: 1px solid var(--accent); 
+      border-radius: 50px; 
+    }
+
+    footer { text-align: center; padding: 80px 0; color: var(--text-muted); font-size: 0.95rem; border-top: 1px solid rgba(255,255,255,0.05); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <h1>L - MANUK SOCIETY</h1>
+      <p class="subtitle">Memahami Transmisi Data</p>
+      <nav class="nav">
+        <a href="../index.html">Home</a>
+        <a href="#">Dasar Transmisi</a>
+        <a href="#">Media Fisik</a>
+        <a href="#">Protokol</a>
+        <a href="#">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container" style="padding: 40px 0 80px;">
+    <article>
+      <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=2000" alt="Serat optik transmisi data" class="hero">
+      
+      <h1>Transmisi Data </h1>
+      <div class="meta">Feb 10, 2026 • 8 min read</div>
+
+      <p>Transmisi data (atau sering disebut komunikasi data) merupakan proses pengiriman dan penerimaan informasi digital dari satu perangkat ke perangkat lainnya melalui saluran komunikasi tertentu. Secara lebih lengkap, transmisi data didefinisikan sebagai transfer bitstream digital (atau sinyal analog yang telah didigitalisasi) melalui media saluran komunikasi yang menghubungkan titik ke titik (point-to-point) maupun dari satu titik ke banyak titik (point-to-multipoint). Proses ini memungkinkan data—yang pada dasarnya berupa representasi biner 0 dan 1—dapat berpindah dari sumber (pengirim) menuju tujuan (penerima) dengan representasi berupa sinyal elektromagnetik, seperti tegangan listrik, gelombang radio, gelombang mikro, sinyal inframerah, cahaya pada serat optik, dan sebagainya.
+Dalam konteks yang lebih luas, transmisi data adalah bagian inti dari komunikasi digital modern yang memungkinkan pertukaran informasi antara dua atau lebih perangkat elektronik, baik dalam jarak dekat (misalnya melalui bus komputer di dalam perangkat) maupun jarak jauh (melalui jaringan kabel, nirkabel, atau satelit). Proses ini tidak hanya sekadar mengirim bit demi bit, melainkan melibatkan serangkaian langkah agar data sampai dengan benar, utuh, dan dalam waktu yang sesuai kebutuhan.</p>
+      
+      <p>Secara umum, transmisi data melibatkan beberapa komponen utama yang bekerja bersama. Pertama, terdapat sumber data atau pengirim (transmitter) yang mengubah informasi asli—berupa teks, gambar, suara, video, atau data sensor—menjadi bentuk sinyal yang dapat ditransmisikan. Kemudian sinyal tersebut dikirim melalui medium atau kanal transmisi, yang bisa berupa media berpandu (guided media) seperti kabel tembaga, kabel koaksial, atau serat optik, maupun media tak berpandu (unguided media) seperti gelombang radio, Wi-Fi, atau gelombang mikro. Di sisi penerima, receiver akan menangkap sinyal tersebut, mendeteksinya, dan mengubahnya kembali menjadi bentuk data yang dapat dimengerti oleh perangkat tujuan.
+Transmisi data dapat dilakukan dalam dua bentuk utama sinyal, yaitu analog dan digital. Transmisi analog mengirimkan sinyal kontinu yang bervariasi secara mulus (seperti suara pada telepon analog lama), sementara transmisi digital mengirimkan sinyal diskrit berupa denyut tegangan yang mewakili bit 0 dan 1. Karena hampir semua perangkat komputasi modern bekerja dengan data digital, transmisi digital menjadi dominan saat ini, meskipun sering kali data digital masih harus dimodulasi ke bentuk analog ketika melewati media tertentu (misalnya melalui modem atau modulasi pada Wi-Fi dan seluler).</p>
+
+<p>Proses transmisi data juga dibedakan berdasarkan arah aliran informasi. Ada mode simplex (hanya satu arah, seperti siaran radio), half-duplex (dua arah tapi bergantian, seperti walkie-talkie), dan full-duplex (dua arah secara simultan, seperti panggilan telepon atau koneksi internet modern). Selain itu, pengiriman bit dapat dilakukan secara serial (satu bit demi satu bit melalui satu jalur) atau paralel (beberapa bit sekaligus melalui jalur banyak), serta secara sinkron (menggunakan sinyal clock bersama) atau asinkron (dengan penanda start dan stop bit tanpa clock bersama).
+Inti dari transmisi data yang baik adalah memastikan integritas, keandalan, dan efisiensi. Integritas berarti data yang diterima sama persis dengan yang dikirim (tanpa perubahan akibat noise atau gangguan). Keandalan dicapai melalui mekanisme deteksi dan koreksi error, sedangkan efisiensi berkaitan dengan penggunaan bandwidth yang optimal serta minimnya overhead (bit tambahan yang tidak membawa informasi utama).
+Dengan demikian, transmisi data bukan sekadar pengiriman sinyal, melainkan keseluruhan proses teknis yang mencakup pengkodean, modulasi, propagasi sinyal melalui medium, demodulasi, sinkronisasi, pengendalian aliran, pengendalian kesalahan, hingga pengiriman ulang jika diperlukan—semua itu agar informasi dapat sampai ke tujuan dengan akurat dan tepat waktu dalam sistem komunikasi digital saat ini.</p>
+
+      <a href="www.html" class="back">← Kembali ke Beranda</a>
+    </article>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 L - MANUK SOCIETY </p>
+    </div>
+  </footer>
+
+</body>
+</html>
