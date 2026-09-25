@@ -1,0 +1,1766 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For You ♡</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&family=Parisienne&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================================================
+   BASIC
+========================================================= */
+
+:root {
+    --bg: #fff7fa;
+    --pink: #e6a5ba;
+    --pink-dark: #a96079;
+    --pink-soft: #f5d9e3;
+    --text: #70535f;
+    --muted: #a1848f;
+    --white: #fffdfd;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background:
+        radial-gradient(
+            circle at 20% 15%,
+            #ffffff 0,
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 80% 40%,
+            rgba(242,190,207,.3),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #fffafd,
+            #fdf0f5,
+            #fff8fb
+        );
+
+    color: var(--text);
+
+    font-family: "DM Sans", sans-serif;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+#intro {
+    position: fixed;
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle,
+            #fffafd,
+            #f9e6ee
+        );
+
+    transition:
+        opacity 1.2s ease,
+        visibility 1.2s ease;
+}
+
+#intro.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.intro-content {
+    text-align: center;
+    padding: 25px;
+}
+
+.intro-small {
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: var(--pink-dark);
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+
+.intro-title {
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(65px, 16vw, 115px);
+
+    line-height: .78;
+
+    color: var(--pink-dark);
+}
+
+.intro-script {
+    font-family: "Parisienne", cursive;
+
+    font-size: 34px;
+
+    color: var(--pink);
+
+    margin-top: 25px;
+}
+
+.open-button {
+    margin-top: 40px;
+
+    padding: 14px 30px;
+
+    border: 1px solid rgba(169,96,121,.3);
+
+    border-radius: 50px;
+
+    background: rgba(255,255,255,.65);
+
+    color: var(--pink-dark);
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition: .35s;
+}
+
+.open-button:hover {
+    background: var(--pink-dark);
+    color: white;
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 15px 35px rgba(169,96,121,.2);
+}
+
+
+/* =========================================================
+   PARTICLES
+========================================================= */
+
+#particles {
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 50;
+}
+
+.particle {
+    position: absolute;
+
+    bottom: -30px;
+
+    color: rgba(190,110,137,.35);
+
+    animation:
+        floatUp linear infinite;
+}
+
+@keyframes floatUp {
+
+    0% {
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+        opacity: 0;
+    }
+
+    15% {
+        opacity: .5;
+    }
+
+    85% {
+        opacity: .4;
+    }
+
+    100% {
+        transform:
+            translateY(-110vh)
+            rotate(180deg);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================================================
+   MUSIC PLAYER
+========================================================= */
+
+.music-player {
+    position: fixed;
+
+    right: 16px;
+    bottom: 18px;
+
+    z-index: 500;
+
+    width: 245px;
+
+    padding: 12px 15px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    border-radius: 60px;
+
+    background: rgba(255,255,255,.82);
+
+    border: 1px solid rgba(255,255,255,.9);
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 15px 45px rgba(110,70,85,.13);
+
+    transform: translateY(120px);
+
+    opacity: 0;
+
+    transition: .8s;
+}
+
+.music-player.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.music-disc {
+    width: 39px;
+    height: 39px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            white 0 8%,
+            #d989a3 9% 12%,
+            #efb1c5 13% 45%,
+            #cf829e 46% 100%
+        );
+
+    animation: spin 4s linear infinite;
+
+    animation-play-state: paused;
+}
+
+.music-disc.playing {
+    animation-play-state: running;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.music-info {
+    flex: 1;
+}
+
+.music-title {
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: 18px;
+
+    color: var(--pink-dark);
+}
+
+.music-sub {
+    font-size: 9px;
+
+    color: var(--muted);
+
+    letter-spacing: .5px;
+}
+
+.music-button {
+    border: none;
+
+    background: transparent;
+
+    color: var(--pink-dark);
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+
+section {
+    min-height: 100vh;
+
+    padding: 90px 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    flex-direction: column;
+
+    text-align: center;
+}
+
+.eyebrow {
+    font-size: 9px;
+
+    letter-spacing: 5px;
+
+    text-transform: uppercase;
+
+    color: var(--pink-dark);
+
+    margin-bottom: 18px;
+}
+
+.hero h1 {
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(72px, 18vw, 150px);
+
+    line-height: .76;
+
+    font-weight: 500;
+
+    color: var(--pink-dark);
+}
+
+.hero h1 span {
+    color: var(--pink);
+}
+
+.hero-text {
+    max-width: 550px;
+
+    margin: 35px auto 50px;
+
+    font-size: 13px;
+
+    line-height: 2;
+
+    color: var(--muted);
+}
+
+
+/* =========================================================
+   SINGLE PHOTO
+========================================================= */
+
+.photo-frame {
+    width: min(330px, 78vw);
+
+    padding: 10px 10px 15px;
+
+    background: #fff;
+
+    box-shadow:
+        0 30px 70px rgba(110,65,85,.15);
+
+    transform: rotate(-2deg);
+
+    transition: .5s;
+
+    position: relative;
+}
+
+.photo-frame:hover {
+    transform:
+        rotate(0)
+        translateY(-8px);
+}
+
+.photo-frame::after {
+    content: "";
+
+    position: absolute;
+
+    inset: -7px;
+
+    border: 1px solid rgba(201,120,148,.25);
+
+    pointer-events: none;
+}
+
+.photo-frame img {
+    width: 100%;
+
+    display: block;
+
+    aspect-ratio: 4 / 5;
+
+    object-fit: cover;
+}
+
+.photo-caption {
+    padding-top: 13px;
+
+    font-family: "Parisienne", cursive;
+
+    font-size: 25px;
+
+    color: var(--pink-dark);
+}
+
+.flower {
+    position: absolute;
+
+    color: var(--pink);
+
+    font-size: 27px;
+
+    z-index: 5;
+}
+
+.flower.one {
+    top: -25px;
+    right: -22px;
+}
+
+.flower.two {
+    bottom: -20px;
+    left: -22px;
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+.message {
+    text-align: center;
+}
+
+.message-card {
+    width: min(700px, 94vw);
+
+    padding: 65px 35px;
+
+    border-radius: 35px;
+
+    background: rgba(255,255,255,.53);
+
+    border: 1px solid rgba(255,255,255,.85);
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 30px 80px rgba(110,65,85,.08);
+}
+
+.script {
+    font-family: "Parisienne", cursive;
+
+    font-size: 35px;
+
+    color: var(--pink);
+}
+
+.message-card h2 {
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(48px, 9vw, 78px);
+
+    font-weight: 500;
+
+    color: var(--pink-dark);
+
+    line-height: .9;
+
+    margin: 15px 0 30px;
+}
+
+.line {
+    width: 55px;
+
+    height: 1px;
+
+    background: var(--pink);
+
+    margin: 0 auto 30px;
+}
+
+.message-card p {
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 2.1;
+}
+
+
+/* =========================================================
+   LETTER SECTION
+========================================================= */
+
+.letter-section {
+    flex-direction: column;
+
+    text-align: center;
+
+    min-height: 100vh;
+}
+
+.letter-section h2 {
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(50px, 11vw, 90px);
+
+    font-weight: 500;
+
+    line-height: .85;
+
+    color: var(--pink-dark);
+}
+
+
+/* =========================================================
+   NEW ENVELOPE
+========================================================= */
+
+.envelope-wrapper {
+    width: min(360px, 86vw);
+
+    height: 280px;
+
+    margin-top: 65px;
+
+    position: relative;
+
+    perspective: 1000px;
+}
+
+.envelope {
+    width: 100%;
+    height: 210px;
+
+    position: absolute;
+
+    bottom: 0;
+
+    cursor: pointer;
+}
+
+
+/* envelope body */
+
+.envelope-body {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f1bfd0,
+            #e7abc0
+        );
+
+    border-radius: 0 0 8px 8px;
+
+    box-shadow:
+        0 25px 55px rgba(120,65,85,.18);
+
+    overflow: hidden;
+}
+
+
+/* lower left/right folds */
+
+.envelope-body::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: 0;
+
+    width: 50%;
+    height: 100%;
+
+    background: rgba(255,255,255,.12);
+
+    clip-path:
+        polygon(
+            0 0,
+            100% 100%,
+            0 100%
+        );
+}
+
+.envelope-body::after {
+    content: "";
+
+    position: absolute;
+
+    right: 0;
+    bottom: 0;
+
+    width: 50%;
+    height: 100%;
+
+    background: rgba(180,90,120,.08);
+
+    clip-path:
+        polygon(
+            100% 0,
+            100% 100%,
+            0 100%
+        );
+}
+
+
+/* =========================================================
+   LETTER PAPER
+========================================================= */
+
+.letter-paper {
+    position: absolute;
+
+    z-index: 2;
+
+    left: 7%;
+    right: 7%;
+
+    bottom: 12px;
+
+    height: 185px;
+
+    background: #fffdfd;
+
+    padding: 28px 22px;
+
+    box-shadow:
+        0 10px 30px rgba(100,60,80,.1);
+
+    border-radius: 2px;
+
+    transition:
+        transform .9s cubic-bezier(.2,.8,.2,1);
+
+    overflow: hidden;
+}
+
+.letter-paper h3 {
+    font-family: "Parisienne", cursive;
+
+    color: var(--pink-dark);
+
+    font-size: 29px;
+
+    margin-bottom: 10px;
+}
+
+.letter-paper p {
+    color: var(--muted);
+
+    font-size: 10px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   ENVELOPE FLAP
+========================================================= */
+
+.envelope-flap {
+    position: absolute;
+
+    z-index: 4;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 58%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e9b0c4,
+            #dfa0b8
+        );
+
+    clip-path:
+        polygon(
+            0 0,
+            50% 100%,
+            100% 0
+        );
+
+    transform-origin: top center;
+
+    transition:
+        transform .9s cubic-bezier(.2,.75,.2,1);
+
+    filter:
+        drop-shadow(
+            0 5px 5px rgba(100,50,70,.08)
+        );
+}
+
+
+/* =========================================================
+   ENVELOPE FRONT PANEL
+========================================================= */
+
+.envelope-front {
+    position: absolute;
+
+    z-index: 5;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 58%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #edb5c9,
+            #e5a7bd
+        );
+
+    clip-path:
+        polygon(
+            0 0,
+            50% 65%,
+            100% 0,
+            100% 100%,
+            0 100%
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   OPEN STATE
+========================================================= */
+
+.envelope.open .envelope-flap {
+    transform:
+        rotateX(180deg);
+
+    z-index: 1;
+}
+
+.envelope.open .letter-paper {
+    transform:
+        translateY(-145px);
+
+    z-index: 3;
+}
+
+
+/* =========================================================
+   LETTER HINT
+========================================================= */
+
+.letter-hint {
+    margin-top: 25px;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+
+    color: var(--muted);
+
+    animation: pulseHint 2s infinite;
+}
+
+@keyframes pulseHint {
+
+    50% {
+        opacity: .4;
+    }
+}
+
+
+/* =========================================================
+   GIFT
+========================================================= */
+
+.gift-section {
+    flex-direction: column;
+
+    text-align: center;
+}
+
+.gift-section h2 {
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(55px, 10vw, 90px);
+
+    font-weight: 500;
+
+    color: var(--pink-dark);
+
+    line-height: .85;
+}
+
+.gift {
+    width: 125px;
+    height: 115px;
+
+    position: relative;
+
+    margin: 55px auto 30px;
+
+    cursor: pointer;
+
+    transition: .4s;
+}
+
+.gift:hover {
+    transform:
+        translateY(-8px)
+        rotate(-2deg);
+}
+
+.gift-box {
+    position: absolute;
+
+    bottom: 0;
+
+    width: 125px;
+    height: 80px;
+
+    background: #df91aa;
+
+    border-radius: 3px;
+
+    box-shadow:
+        0 20px 40px rgba(120,65,85,.17);
+}
+
+.gift-lid {
+    position: absolute;
+
+    z-index: 3;
+
+    top: 15px;
+    left: -5px;
+
+    width: 135px;
+    height: 25px;
+
+    background: #d77e9b;
+
+    border-radius: 3px;
+
+    transition: .8s;
+}
+
+.gift-ribbon {
+    position: absolute;
+
+    z-index: 4;
+
+    left: 52px;
+
+    bottom: 0;
+
+    width: 20px;
+    height: 80px;
+
+    background: #f8d8e2;
+}
+
+.gift.open .gift-lid {
+    transform:
+        translateY(-55px)
+        rotate(-4deg);
+}
+
+.gift-message {
+    max-width: 550px;
+
+    max-height: 0;
+
+    overflow: hidden;
+
+    opacity: 0;
+
+    transition: 1s;
+}
+
+.gift-message.show {
+    max-height: 300px;
+
+    opacity: 1;
+}
+
+.gift-message p {
+    font-size: 13px;
+
+    line-height: 2;
+
+    color: var(--muted);
+}
+
+.gift-message strong {
+    font-family: "Parisienne", cursive;
+
+    color: var(--pink-dark);
+
+    font-size: 32px;
+}
+
+
+/* =========================================================
+   FINAL
+========================================================= */
+
+.final {
+    text-align: center;
+
+    flex-direction: column;
+
+    min-height: 90vh;
+}
+
+.final h2 {
+    font-family: "Cormorant Garamond", serif;
+
+    font-size: clamp(75px, 16vw, 140px);
+
+    line-height: .75;
+
+    color: var(--pink-dark);
+
+    font-weight: 500;
+}
+
+.final-script {
+    margin-top: 35px;
+
+    font-family: "Parisienne", cursive;
+
+    color: var(--pink);
+
+    font-size: 38px;
+}
+
+.final p {
+    max-width: 480px;
+
+    margin-top: 25px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    line-height: 2;
+}
+
+.final-heart {
+    margin-top: 35px;
+
+    color: var(--pink-dark);
+
+    font-size: 25px;
+
+    animation:
+        heartbeat 1.6s infinite;
+}
+
+@keyframes heartbeat {
+
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    padding: 30px;
+
+    text-align: center;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    color: #b99ca7;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    section {
+        padding: 80px 18px;
+    }
+
+    .hero h1 {
+        font-size: 78px;
+    }
+
+    .photo-frame {
+        width: min(310px, 78vw);
+    }
+
+    .message-card {
+        padding: 55px 25px;
+    }
+
+    /*
+       Amplop khusus HP.
+       Ukuran tetap proporsional.
+    */
+
+    .envelope-wrapper {
+        width: min(350px, 86vw);
+        height: 275px;
+    }
+
+    .envelope {
+        height: 200px;
+    }
+
+    .letter-paper {
+        height: 175px;
+
+        padding:
+            24px 18px;
+    }
+
+    .envelope.open .letter-paper {
+        transform:
+            translateY(-125px);
+    }
+
+    .music-player {
+        width: 220px;
+
+        right: 12px;
+        bottom: 12px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     INTRO
+===================================================== -->
+
+<div id="intro">
+
+    <div class="intro-content">
+
+        <div class="intro-small">
+            a little birthday story
+        </div>
+
+        <div class="intro-title">
+            Just for you
+        </div>
+
+        <div class="intro-script">
+            one little surprise ♡
+        </div>
+
+        <button
+            class="open-button"
+            onclick="openWebsite()"
+        >
+            OPEN THE SURPRISE
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- PARTICLES -->
+
+<div id="particles"></div>
+
+
+<!-- =====================================================
+     MUSIC
+===================================================== -->
+
+<div
+    class="music-player"
+    id="musicPlayer"
+>
+
+    <div
+        class="music-disc"
+        id="musicDisc"
+    ></div>
+
+    <div class="music-info">
+
+        <div class="music-title">
+            Glue Song
+        </div>
+
+        <div class="music-sub">
+            a little song for today
+        </div>
+
+    </div>
+
+    <button
+        class="music-button"
+        id="musicButton"
+        onclick="toggleMusic()"
+    >
+        ♫
+    </button>
+
+</div>
+
+
+<audio
+    id="song"
+    loop
+>
+    <source
+        src="https://cdn.imageurlgenerator.com/uploads/723c0414-b4f3-46eb-8b55-1ad71e83c9d9.mp3"
+        type="audio/mpeg"
+    >
+</audio>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+    <div class="eyebrow">
+        today is a special day
+    </div>
+
+    <h1>
+        Happy<br>
+        <span>Birthday Loraaa</span>
+    </h1>
+
+    <p class="hero-text">
+
+        Kamuu tauu gasihh?? kalo hari ini tuhh bukan hanya sekadarr bertambahnya
+        satu angka.
+
+        Tapiii melainkan tentang semua cerita yang sudah kamu,akuu,kitaa lewati,
+        semua hal yang telah dipelajari,
+        dan semua cerita baru yang masih menunggu.
+
+    </p>
+
+
+    <!-- SATU-SATUNYA FOTO UTAMA -->
+
+    <div class="photo-frame">
+
+        <span class="flower one">
+            ✿
+        </span>
+
+        <img
+            src="https://i.ibb.co.com/N69Vkycy/IMG-20260918-WA0092.webp"
+            alt="Foto ulang tahun"
+        >
+
+        <div class="photo-caption">
+            one beautiful moment
+        </div>
+
+        <span class="flower two">
+            ♡
+        </span>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     MESSAGE
+===================================================== -->
+
+<section class="message">
+
+    <div class="message-card">
+
+        <div class="script">
+            Dear you,
+        </div>
+
+        <h2>
+            This day is yours.
+        </h2>
+
+        <div class="line"></div>
+
+        <p>
+
+            Semoga di usia yang baru ini,
+            ada lebih banyak alasan untuk tersenyum.
+
+            <br><br>
+
+            Aku harapp semuaa—segala sesuatu dari hal kecil maupun besar bisa terus menjafi alasan untuk kamu bisa terus tersenyum.maaf akuu masih belum bisa bener-bener jadi yang terbaik buat kamuu,di saat banyak cowok di luaran sana,temen-temenkamuu ngasih hal yang begitu istimewa,aku cuman bisa ngasih ini buatt kamuu:).
+
+            <br><br>
+
+            Tapi aku sadar,gak semuanya harus sempurna.
+            Gak semuanya harus langsung dipahami.
+
+            Untuk hari ini,
+            cukup berhenti sebentar,
+            lihat seberapa jauh perjalananmu,
+            dan nikmati momen ini.
+
+            <br><br>
+
+            Karena hari ini memang layak dirayakan.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LETTER
+===================================================== -->
+
+<section class="letter-section">
+
+    <div class="eyebrow">
+        there's a little letter
+    </div>
+
+    <h2>
+        Open this<br>
+        slowly.
+    </h2>
+
+
+    <div class="envelope-wrapper">
+
+        <div
+            class="envelope"
+            id="envelope"
+            onclick="openLetter()"
+        >
+
+            <!-- SURAT -->
+
+            <div class="letter-paper">
+
+                <h3>
+                    A little note...
+                </h3>
+
+                <p>
+
+                    Semoga tahun ini membawa
+                    lebih banyak hal baik.
+
+                    <br>
+
+                    Semoga selalu ada sesuatu,
+                    sekecil apa pun,
+                    yang membuat hari kamuu terasa
+                    layak dijalani yaaa??.
+                    Aku sayanggg loraaaa.
+                    <br><br>
+
+                    Happy Birthday ♡
+
+                </p>
+
+            </div>
+
+
+            <!-- BADAN AMPLOP -->
+
+            <div class="envelope-body"></div>
+
+
+            <!-- FLAP ATAS -->
+
+            <div class="envelope-flap"></div>
+
+
+            <!-- BAGIAN DEPAN -->
+
+            <div class="envelope-front"></div>
+
+        </div>
+
+    </div>
+
+
+    <div class="letter-hint">
+        TAP THE ENVELOPE
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     GIFT
+===================================================== -->
+
+<section class="gift-section">
+
+    <div class="eyebrow">
+        one last surprise
+    </div>
+
+    <h2>
+        There's something<br>
+        waiting for you.
+    </h2>
+
+
+    <div
+        class="gift"
+        id="gift"
+        onclick="openGift()"
+    >
+
+        <div class="gift-lid"></div>
+
+        <div class="gift-box"></div>
+
+        <div class="gift-ribbon"></div>
+
+    </div>
+
+
+    <div
+        class="gift-message"
+        id="giftMessage"
+    >
+
+        <div class="line"></div>
+
+        <p>
+
+            dua tiga tutup botol,
+          <p>engkolll😝😝 </p>
+
+            <br><br>
+
+            
+
+            <br><br>
+
+            <strong>
+                You are worth celebrating.
+            </strong>
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FINAL
+===================================================== -->
+
+<section class="final">
+
+    <div class="eyebrow">
+        until the next chapter
+    </div>
+
+    <h2>
+        Keep<br>
+        shining.
+    </h2>
+
+    <div class="final-script">
+        Happy Birthday ♡
+    </div>
+
+    <p>
+
+        LOPEEE SEKEBONNNNNN
+      BUATTT KAMUUUU SAYANGGGG >_<.
+
+        <br><br>
+
+        This is only the beginning.
+
+    </p>
+
+    <div class="final-heart">
+        ♥
+    </div>
+
+</section>
+
+
+</main>
+
+
+<footer>
+    MADE WITH IYAN· FOR A SPECIAL LORAA DAY
+</footer>
+
+
+<script>
+
+/* =====================================================
+   OPEN WEBSITE
+===================================================== */
+
+function openWebsite() {
+
+    const intro =
+        document.getElementById("intro");
+
+    const player =
+        document.getElementById("musicPlayer");
+
+    const song =
+        document.getElementById("song");
+
+    const disc =
+        document.getElementById("musicDisc");
+
+
+    intro.classList.add("hide");
+
+    player.classList.add("show");
+
+
+    song.play()
+        .then(() => {
+
+            disc.classList.add("playing");
+
+        })
+        .catch(() => {
+
+            // User dapat menekan tombol musik
+            // jika browser menolak autoplay.
+
+        });
+
+}
+
+
+/* =====================================================
+   MUSIC
+===================================================== */
+
+function toggleMusic() {
+
+    const song =
+        document.getElementById("song");
+
+    const disc =
+        document.getElementById("musicDisc");
+
+    const button =
+        document.getElementById("musicButton");
+
+
+    if (song.paused) {
+
+        song.play();
+
+        disc.classList.add("playing");
+
+        button.innerHTML = "♫";
+
+    } else {
+
+        song.pause();
+
+        disc.classList.remove("playing");
+
+        button.innerHTML = "Ⅱ";
+
+    }
+
+}
+
+
+/* =====================================================
+   PARTICLES
+===================================================== */
+
+const particles =
+    document.getElementById("particles");
+
+const symbols = [
+    "♡",
+    "✦",
+    "✧"
+];
+
+
+for (
+    let i = 0;
+    i < 24;
+    i++
+) {
+
+    const particle =
+        document.createElement("div");
+
+    particle.className =
+        "particle";
+
+    particle.innerHTML =
+        symbols[
+            Math.floor(
+                Math.random() *
+                symbols.length
+            )
+        ];
+
+    particle.style.left =
+        Math.random() * 100 + "%";
+
+    particle.style.fontSize =
+        8 + Math.random() * 10 + "px";
+
+    particle.style.animationDuration =
+        10 + Math.random() * 12 + "s";
+
+    particle.style.animationDelay =
+        Math.random() * 10 + "s";
+
+    particles.appendChild(
+        particle
+    );
+
+}
+
+
+/* =====================================================
+   LETTER
+===================================================== */
+
+function openLetter() {
+
+    const envelope =
+        document.getElementById("envelope");
+
+    envelope.classList.toggle("open");
+
+}
+
+
+/* =====================================================
+   GIFT
+===================================================== */
+
+function openGift() {
+
+    const gift =
+        document.getElementById("gift");
+
+    const message =
+        document.getElementById("giftMessage");
+
+
+    gift.classList.toggle("open");
+
+    message.classList.toggle("show");
+
+
+    if (
+        gift.classList.contains("open")
+    ) {
+
+        createHeartBurst();
+
+    }
+
+}
+
+
+/* =====================================================
+   HEART BURST
+===================================================== */
+
+function createHeartBurst() {
+
+    for (
+        let i = 0;
+        i < 16;
+        i++
+    ) {
+
+        const heart =
+            document.createElement("div");
+
+        heart.innerHTML =
+            Math.random() > .3
+                ? "♡"
+                : "✦";
+
+        heart.style.position =
+            "fixed";
+
+        heart.style.left =
+            "50%";
+
+        heart.style.top =
+            "50%";
+
+        heart.style.zIndex =
+            "999";
+
+        heart.style.pointerEvents =
+            "none";
+
+        heart.style.color =
+            "#c97894";
+
+        const angle =
+            Math.random() *
+            Math.PI *
+            2;
+
+        const distance =
+            100 +
+            Math.random() * 200;
+
+        const x =
+            Math.cos(angle) *
+            distance;
+
+        const y =
+            Math.sin(angle) *
+            distance;
+
+
+        heart.animate(
+
+            [
+                {
+                    transform:
+                        "translate(-50%,-50%) scale(.2)",
+
+                    opacity: 1
+                },
+
+                {
+                    transform:
+                        `translate(
+                            calc(-50% + ${x}px),
+                            calc(-50% + ${y}px)
+                        )
+                        scale(1)`,
+
+                    opacity: 0
+                }
+            ],
+
+            {
+                duration: 1200
+            }
+
+        );
+
+
+        document.body.appendChild(
+            heart
+        );
+
+
+        setTimeout(
+            () => heart.remove(),
+            1300
+        );
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
